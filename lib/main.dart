@@ -41,19 +41,27 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+      body: ConstrainedBox(
+        constraints: const BoxConstraints(
+          minWidth: 250,
+          minHeight: 250
         ),
+        child: Container(
+            width: 100,
+            height: 100,
+            color: const Color(0xFFFF0000),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: 450,
+                  minHeight: 450,
+                ),
+                child: Container(
+                  color: const Color(0xFF00FF00),
+                ),
+              ),
+            ),
+          ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
