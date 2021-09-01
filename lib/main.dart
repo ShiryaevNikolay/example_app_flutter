@@ -1,3 +1,4 @@
+import 'package:example_app_flutter/add_counter_screen/add_counter_screen_bloc.dart';
 import 'package:example_app_flutter/main_screen/main_screen.dart';
 import 'package:example_app_flutter/main_screen/main_screen_bloc.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
       ),
       home: MultiBlocProvider(
         providers: [
-          BlocProvider<MainScreenBloc>(create: (context) => MainScreenBloc())
+          BlocProvider<MainScreenBloc>(create: (context) => MainScreenBloc()),
+          BlocProvider<AddCounterScreenBloc>(create: (context) => AddCounterScreenBloc())
         ],
         child: MainScreen(),
       ),
