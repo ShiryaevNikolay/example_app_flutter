@@ -1,9 +1,11 @@
+import 'package:example_app_flutter/domain/counter.dart';
 import 'package:example_app_flutter/main_screen/main_screen_bloc.dart';
 import 'package:example_app_flutter/main_screen/main_screen_event.dart';
 import 'package:example_app_flutter/main_screen/main_screen_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
 
 class MainScreen extends StatelessWidget {
 
@@ -20,9 +22,7 @@ class MainScreen extends StatelessWidget {
       }),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {
-          // TODO: добавление счетчика
-        }
+        onPressed: addCounter
       ),
     );
   }
@@ -38,10 +38,29 @@ class MainScreen extends StatelessWidget {
     }
 
     if (state is ShowCountersState) {
-      // TODO: показать список счетчиков
+      return _renderCounters(state);
     }
 
     return _renderInitialState();
+  }
+
+  ValueListenableBuilder _renderCounters(ShowCountersState state) {
+    return ValueListenableBuilder(
+      valueListenable: state.countersBox.listenable(), 
+      builder: (context, box, _) {
+        if (box.values.isEmpty) {
+          return _renderEmptyState();
+        }
+        return ListView.builder(
+          itemCount: box.values.length,
+          itemBuilder: (context, index) {
+            Counter counter = box.getAt(index);
+
+            return _buildItemView(counter);
+          }
+        );
+      }
+    );
   }
 
   Widget _renderInitialState() {
@@ -60,5 +79,15 @@ class MainScreen extends StatelessWidget {
     return Center(
       child: CircularProgressIndicator(),
     );
+  }
+
+  Widget _buildItemView(Counter counter) {
+    return Container(
+      child: Text(counter.count.toString()),
+    );
+  }
+
+  void addCounter() {
+    _bloc?.add(AddCounter());
   }
 }
