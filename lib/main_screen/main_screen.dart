@@ -28,10 +28,6 @@ class MainScreen extends StatelessWidget {
   }
 
   Widget _renderState(BuildContext context, MainScreenState state) {
-  
-    if (state is EmptyDataState) {
-      return _renderEmptyState();
-    }
 
     if (state is LoadingState) {
       return _renderLoadingState();
@@ -82,8 +78,20 @@ class MainScreen extends StatelessWidget {
   }
 
   Widget _buildItemView(Counter counter) {
-    return Container(
-      child: Text(counter.count.toString()),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+      child: Material(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        child: InkWell(
+          onTap: () {},
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(counter.count.toString()),
+          ),
+        ),
+      ),
     );
   }
 

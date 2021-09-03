@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:example_app_flutter/domain/counter.dart';
 import 'package:hive/hive.dart';
