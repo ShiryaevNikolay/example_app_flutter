@@ -6,7 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
   final CounterRepository _repository = CounterRepository();
 
-  MainScreenBloc() : super(InitializeState());
+  MainScreenBloc() : super(InitializeState()) {
+    add(LoadCounters());
+  }
 
   @override
   Stream<MainScreenState> mapEventToState(MainScreenEvent event) async* {

@@ -17,7 +17,7 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    _bloc = BlocProvider.of<MainScreenBloc>(context)..add(LoadCounters());
+    _bloc = BlocProvider.of<MainScreenBloc>(context);
 
     return Scaffold(
       body: BlocBuilder<MainScreenBloc, MainScreenState>(builder: (context, state) {
