@@ -17,7 +17,7 @@ class CounterAdapter extends TypeAdapter<Counter> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Counter(
-      count: fields[0] as int?,
+      fields[0] as int,
     );
   }
 

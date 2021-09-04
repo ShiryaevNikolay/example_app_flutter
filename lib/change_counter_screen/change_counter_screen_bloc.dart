@@ -4,15 +4,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChangeCounterScreenBloc extends Bloc<ChangeCounterScreenEvent, ChangeCounterScreenState> {
 
-  ChangeCounterScreenBloc() : super(InitializeState());
+  ChangeCounterScreenBloc() : super(ChangeCounterScreenState());
   
   @override
   Stream<ChangeCounterScreenState> mapEventToState(ChangeCounterScreenEvent event) async* {
-    try {
-      yield LoadingState();
-      // TODO: что-то делать
-    } catch(_) {
-      yield ErrorState();
+    if (event is IncrementCounter) {
+      state.counter?.count += 1;
     }
+
+    if (event is DecrementCounter) {
+      state.counter?.count -= 1;
+    }
+    yield state;
   }
 }

@@ -6,7 +6,7 @@ part 'counter.g.dart';
 class Counter extends HiveObject{
 
   @HiveField(0)
-  int? count;
+  int count;
 
-  Counter({ this.count });
+  Counter(this.count);
 }

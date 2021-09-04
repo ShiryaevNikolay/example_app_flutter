@@ -5,7 +5,7 @@ abstract class MainScreenEvent {}
 class LoadCounters extends MainScreenEvent {}
 
 class AddCounter extends MainScreenEvent {
-  final Counter counter = Counter(count: 0);
+  final Counter counter = Counter(0);
 }
 
 class OpenScreenChangeCouner extends MainScreenEvent {}

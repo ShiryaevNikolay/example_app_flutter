@@ -1,7 +1,13 @@
-abstract class ChangeCounterScreenState {}
+import 'package:example_app_flutter/domain/counter.dart';
 
-class InitializeState extends ChangeCounterScreenState {}
+class ChangeCounterScreenState {
+  Counter? counter;
 
-class LoadingState extends ChangeCounterScreenState {}
+  @override
+  int get hashCode => this.counter.hashCode;
 
-class ErrorState extends ChangeCounterScreenState {}
+  @override
+  bool operator ==(Object other) {
+    return this.counter == other;
+  }
+}
