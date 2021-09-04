@@ -1,7 +1,6 @@
-
-import 'package:example_app_flutter/add_counter_screen/add_counter_screen_bloc.dart';
-import 'package:example_app_flutter/main_screen/main_screen.dart';
+import 'package:example_app_flutter/change_counter_screen/change_counter_screen_bloc.dart';
 import 'package:example_app_flutter/main_screen/main_screen_bloc.dart';
+import 'package:example_app_flutter/navigation/router/router_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,6 +9,9 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+
+  final delegate = ExampleAppRouterDelegate();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,9 +22,12 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(
         providers: [
           BlocProvider<MainScreenBloc>(create: (context) => MainScreenBloc()),
-          BlocProvider<AddCounterScreenBloc>(create: (context) => AddCounterScreenBloc())
+          BlocProvider<ChangeCounterScreenBloc>(create: (context) => ChangeCounterScreenBloc())
         ],
-        child: MainScreen(),
+        child: Router(
+          routerDelegate: delegate,
+          backButtonDispatcher: RootBackButtonDispatcher(),
+        ),
       ),
     );
   }

@@ -10,6 +10,9 @@ import 'package:hive_flutter/adapters.dart';
 class MainScreen extends StatelessWidget {
 
   MainScreenBloc? _bloc;
+  final Function(Counter) onCounterTap;
+
+  MainScreen({required this.onCounterTap});
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +87,9 @@ class MainScreen extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(10)),
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            onCounterTap(counter);
+          },
           borderRadius: BorderRadius.all(Radius.circular(10)),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
