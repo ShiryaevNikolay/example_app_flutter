@@ -21,9 +21,7 @@ class ChangeCounterScreen extends StatelessWidget {
       body: changeCounterWidget(),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.check_rounded),
-          onPressed: () {
-            // TODO: сохранить изменения
-          }),
+          onPressed: () { _bloc!.add(SaveCounter()); }),
     );
   }
 

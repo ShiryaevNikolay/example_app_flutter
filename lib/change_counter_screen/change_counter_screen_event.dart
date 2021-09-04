@@ -1,6 +1,6 @@
 abstract class ChangeCounterScreenEvent {}
 
-class CreateCounter extends ChangeCounterScreenEvent {}
+class SaveCounter extends ChangeCounterScreenEvent {}
 
 class IncrementCounter extends ChangeCounterScreenEvent {}
 

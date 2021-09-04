@@ -9,7 +9,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   final delegate = ExampleAppRouterDelegate();
 
   @override
@@ -22,7 +21,8 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(
         providers: [
           BlocProvider<MainScreenBloc>(create: (context) => MainScreenBloc()),
-          BlocProvider<ChangeCounterScreenBloc>(create: (context) => ChangeCounterScreenBloc())
+          BlocProvider<ChangeCounterScreenBloc>(
+              create: (context) => ChangeCounterScreenBloc(delegate: delegate))
         ],
         child: Router(
           routerDelegate: delegate,
