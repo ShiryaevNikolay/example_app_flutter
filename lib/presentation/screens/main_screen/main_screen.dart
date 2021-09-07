@@ -1,11 +1,10 @@
+import 'package:example_app_flutter/data/bloc/main_screen/main_screen_bloc.dart';
+import 'package:example_app_flutter/data/bloc/main_screen/main_screen_event.dart';
+import 'package:example_app_flutter/data/bloc/main_screen/main_screen_state.dart';
 import 'package:example_app_flutter/domain/counter.dart';
-import 'package:example_app_flutter/main_screen/main_screen_bloc.dart';
-import 'package:example_app_flutter/main_screen/main_screen_event.dart';
-import 'package:example_app_flutter/main_screen/main_screen_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/adapters.dart';
 
 class MainScreen extends StatelessWidget {
 
@@ -45,7 +44,7 @@ class MainScreen extends StatelessWidget {
 
   ValueListenableBuilder _renderCounters(ShowCountersState state) {
     return ValueListenableBuilder(
-      valueListenable: state.countersBox.listenable(), 
+      valueListenable: state.boxListenable, 
       builder: (context, box, _) {
         if (box.values.isEmpty) {
           return _renderEmptyState();
@@ -93,7 +92,18 @@ class MainScreen extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(10)),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text(counter.count.toString()),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(counter.count.toString()),
+                IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: () {
+                    _bloc?.add(DeleteCounter(counter));
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),

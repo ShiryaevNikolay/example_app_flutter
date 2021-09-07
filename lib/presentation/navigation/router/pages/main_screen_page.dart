@@ -1,6 +1,6 @@
 import 'package:example_app_flutter/domain/counter.dart';
-import 'package:example_app_flutter/main_screen/main_screen.dart';
-import 'package:example_app_flutter/navigation/router/pages/pages.dart';
+import 'package:example_app_flutter/presentation/navigation/router/pages/pages.dart';
+import 'package:example_app_flutter/presentation/screens/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

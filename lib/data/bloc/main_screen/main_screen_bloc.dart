@@ -1,7 +1,9 @@
-import 'package:example_app_flutter/counter_service/counter_repository.dart';
-import 'package:example_app_flutter/main_screen/main_screen_event.dart';
-import 'package:example_app_flutter/main_screen/main_screen_state.dart';
+import 'package:example_app_flutter/data/counter_service/counter_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+import 'main_screen_event.dart';
+import 'main_screen_state.dart';
 
 class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
   final CounterRepository _repository = CounterRepository();
@@ -16,9 +18,9 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
       try {
         yield LoadingState();
 
-        final countersBox = await _repository.getBoxCounters();
+        final countersBox = _repository.getCounterBox();
 
-        yield ShowCountersState(countersBox);
+        yield ShowCountersState(countersBox.listenable());
       } catch (_) {
         yield ErrorState();
       }
@@ -28,12 +30,18 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
       try {
         _repository.addCounter(event.counter);
 
-        if (state is ShowCountersState) {
-          yield (state as ShowCountersState).copy();
-        } else {
-          yield state;
-        }
+        yield state;
       } catch (_) {
+        yield ErrorState();
+      }
+    }
+
+    if (event is DeleteCounter) {
+      try {
+        _repository.deleteCounter(event.counter);
+
+        yield state;
+      } catch(_) {
         yield ErrorState();
       }
     }

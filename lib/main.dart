@@ -1,15 +1,25 @@
-import 'package:example_app_flutter/change_counter_screen/change_counter_screen_bloc.dart';
-import 'package:example_app_flutter/main_screen/main_screen_bloc.dart';
-import 'package:example_app_flutter/navigation/router/router_delegate.dart';
+
+import 'package:example_app_flutter/presentation/navigation/router/router_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+import 'data/bloc/change_counter/change_counter_screen_bloc.dart';
+import 'data/bloc/main_screen/main_screen_bloc.dart';
+import 'data/counter_service/storage/counter_storage.dart';
+import 'domain/counter.dart';
+
+void main() async {
+
+  await Hive.initFlutter();
+  Hive.registerAdapter(CounterAdapter());
+  await Hive.openBox<Counter>(CounterStorage.COUNTERS_BOX_NAME);
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final delegate = ExampleAppRouterDelegate();
+  final _delegate = ExampleAppRouterDelegate();
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +32,10 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<MainScreenBloc>(create: (context) => MainScreenBloc()),
           BlocProvider<ChangeCounterScreenBloc>(
-              create: (context) => ChangeCounterScreenBloc(delegate: delegate))
+              create: (context) => ChangeCounterScreenBloc(_delegate))
         ],
         child: Router(
-          routerDelegate: delegate,
+          routerDelegate: _delegate,
           backButtonDispatcher: RootBackButtonDispatcher(),
         ),
       ),
