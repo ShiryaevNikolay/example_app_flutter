@@ -12,7 +12,9 @@ class ChangeCounterScreenBloc extends Bloc<ChangeCounterScreenEvent, ChangeCount
   @override
   Stream<ChangeCounterScreenState> mapEventToState(ChangeCounterScreenEvent event) async* {
     if (event is IncrementCounter) {
-      state.counter?.count += 1;
+      state.counter?.count += 1; //Вот эти операции должны проходит через репозиторий. Иначе выходит, что у тебя репозиторий вроде как отвечает за сохранение в бокс, и сам по себе объект тоже можем менять.
+      // в принципе лучше сделать данные иммутабельныи и менять их через копирование.
+      // Это же относится и к строкам ниже.
     }
 
     if (event is DecrementCounter) {
@@ -24,6 +26,6 @@ class ChangeCounterScreenBloc extends Bloc<ChangeCounterScreenEvent, ChangeCount
       delegate.selectedCounter = null;
     }
 
-    yield state;
+    yield state; //так как ты не будешь менять один и тот же стейт - здесь будет копирование.
   }
 }

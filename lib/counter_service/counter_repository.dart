@@ -4,8 +4,9 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
 class CounterRepository {
-  static const String COUNTERS_BOX_NAME = "counters";
+  static const String COUNTERS_BOX_NAME = "counters"; //const именуются в camelCase
 
+  //Все это можно вынести в main, все равно без этой инициалиации приложение не запустится.
   Future<Box<Counter>> getBoxCounters() async {
     var dir =  await getApplicationDocumentsDirectory();
     Hive.init(dir.path);
