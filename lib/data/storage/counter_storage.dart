@@ -2,9 +2,9 @@ import 'package:example_app_flutter/domain/counter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class CounterStorage {
-  static const String COUNTERS_BOX_NAME = "counters";
+  static const String CountersBoxName = "counters";
 
-  final Box<Counter> _counterBox = Hive.box<Counter>(COUNTERS_BOX_NAME);
+  final Box<Counter> _counterBox = Hive.box<Counter>(CountersBoxName);
   Box<Counter> get box => _counterBox;
 
   static final CounterStorage _counterStorage = CounterStorage._internal();

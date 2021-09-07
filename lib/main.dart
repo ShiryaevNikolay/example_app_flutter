@@ -13,7 +13,7 @@ void main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(CounterAdapter());
-  await Hive.openBox<Counter>(CounterStorage.COUNTERS_BOX_NAME);
+  await Hive.openBox<Counter>(CounterStorage.CountersBoxName);
 
   runApp(MyApp());
 }
