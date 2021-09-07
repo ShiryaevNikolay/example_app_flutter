@@ -1,6 +1,6 @@
 import 'package:example_app_flutter/domain/counter.dart';
-import 'package:example_app_flutter/presentation/navigation/router/pages/change_counter_screen_page.dart';
-import 'package:example_app_flutter/presentation/navigation/router/pages/main_screen_page.dart';
+import 'package:example_app_flutter/presentation/navigation/pages/change_counter_screen_page.dart';
+import 'package:example_app_flutter/presentation/navigation/pages/main_screen_page.dart';
 import 'package:flutter/widgets.dart';
 
 class ExampleAppRouterDelegate extends RouterDelegate

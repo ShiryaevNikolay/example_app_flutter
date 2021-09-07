@@ -1,20 +1,25 @@
 import 'package:example_app_flutter/domain/counter.dart';
 
 class ChangeCounterScreenState {
-  late Counter? _counter;
+  late final Counter? _counter;
   Counter? get counter => _counter;
-  int currentCount = 0;
+  int _currentCount = 0;
+  int get currentCount => _currentCount;
 
-  ChangeCounterScreenState(Counter? counter) {
+  ChangeCounterScreenState({required Counter? counter}) {
     this._counter = counter;
-    this.currentCount = this._counter?.count ?? 0;
+    this._currentCount = this._counter?.count ?? 0;
   }
 
+  ChangeCounterScreenState copyWith({int? count}) =>
+      ChangeCounterScreenState(counter: this._counter)
+        .._currentCount = count ?? this._currentCount;
+
   @override
-  int get hashCode => currentCount.hashCode;
+  int get hashCode => _currentCount.hashCode;
 
   @override
   bool operator ==(Object other) {
-    return currentCount == other;
+    return _currentCount == other;
   }
 }

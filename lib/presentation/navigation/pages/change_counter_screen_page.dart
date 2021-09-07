@@ -1,5 +1,4 @@
-import 'package:example_app_flutter/domain/counter.dart';
-import 'package:example_app_flutter/presentation/navigation/router/pages/pages.dart';
+import 'package:example_app_flutter/presentation/navigation/pages/pages.dart';
 import 'package:example_app_flutter/presentation/screens/change_counter_screen/change_counter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
