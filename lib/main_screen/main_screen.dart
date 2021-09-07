@@ -45,7 +45,7 @@ class MainScreen extends StatelessWidget {
 
   ValueListenableBuilder _renderCounters(ShowCountersState state) {
     return ValueListenableBuilder(
-      valueListenable: state.countersBox.listenable(), 
+      valueListenable: state.countersBox.listenable(), //хитро, но неявно и легко ломается 
       builder: (context, box, _) {
         if (box.values.isEmpty) {
           return _renderEmptyState();

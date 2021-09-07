@@ -28,6 +28,7 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
       try {
         _repository.addCounter(event.counter);
 
+        //максимально странный участок кода
         if (state is ShowCountersState) {
           yield (state as ShowCountersState).copy();
         } else {

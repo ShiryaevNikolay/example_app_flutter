@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChangeCounterScreen extends StatelessWidget {
-  ChangeCounterScreenBloc? _bloc;
+  ChangeCounterScreenBloc? _bloc; //не final поля в Stateless  - тебе анализатор сам говорит , что это нехорошо. Виджет часто пересоздается, не стоит в нем делать мутабельные ссылки.
   final Counter? counter;
 
   ChangeCounterScreen({required this.counter});
@@ -15,7 +15,7 @@ class ChangeCounterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _bloc = BlocProvider.of<ChangeCounterScreenBloc>(context)
-      ..state.counter = this.counter;
+      ..state.counter = this.counter; //не-не, так не стоит. Уж если блок - то надо в реактивность и через add. 
 
     return Scaffold(
       body: changeCounterWidget(),
@@ -25,6 +25,7 @@ class ChangeCounterScreen extends StatelessWidget {
     );
   }
 
+  //Стоит выносить в виджеты, а не в методы
   Widget changeCounterWidget() {
     return BlocBuilder<ChangeCounterScreenBloc, ChangeCounterScreenState>(
       builder: (context, state) {
