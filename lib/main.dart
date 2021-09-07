@@ -6,7 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import 'data/bloc/change_counter/change_counter_screen_bloc.dart';
 import 'data/bloc/main_screen/main_screen_bloc.dart';
-import 'data/counter_service/storage/counter_storage.dart';
+import 'data/storage/counter_storage.dart';
 import 'domain/counter.dart';
 
 void main() async {

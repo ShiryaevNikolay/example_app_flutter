@@ -1,4 +1,4 @@
-import 'package:example_app_flutter/data/counter_service/storage/counter_storage.dart';
+import 'package:example_app_flutter/data/storage/counter_storage.dart';
 import 'package:example_app_flutter/domain/counter.dart';
 import 'package:hive/hive.dart';
 

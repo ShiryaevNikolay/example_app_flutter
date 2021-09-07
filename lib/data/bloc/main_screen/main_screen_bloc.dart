@@ -1,4 +1,4 @@
-import 'package:example_app_flutter/data/counter_service/counter_repository.dart';
+import 'package:example_app_flutter/data/repository/counter_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
