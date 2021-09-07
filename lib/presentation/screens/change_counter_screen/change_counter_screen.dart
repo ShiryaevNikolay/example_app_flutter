@@ -1,5 +1,5 @@
-import 'package:example_app_flutter/data/bloc/change_counter/change_counter_screen_bloc.dart';
-import 'package:example_app_flutter/data/bloc/change_counter/change_counter_screen_event.dart';
+import 'package:example_app_flutter/data/bloc/change_counter_screen/change_counter_screen_bloc.dart';
+import 'package:example_app_flutter/data/bloc/change_counter_screen/change_counter_screen_event.dart';
 import 'package:example_app_flutter/presentation/widgets/change_counter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
