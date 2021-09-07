@@ -5,11 +5,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 abstract class MainScreenState extends Equatable {}
 
-class InitializeState extends MainScreenState {
-  @override
-  List<Object?> get props => [this];
-}
-
 class EmptyDataState extends MainScreenState {
   static const String message = "Добавьте счетчик";
 

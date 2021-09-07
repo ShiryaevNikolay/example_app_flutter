@@ -8,7 +8,7 @@ import 'main_screen_state.dart';
 class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
   final CounterRepository _repository = CounterRepository();
 
-  MainScreenBloc() : super(InitializeState()) {
+  MainScreenBloc() : super(EmptyDataState()) {
     add(LoadCounters());
   }
 
@@ -29,8 +29,6 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
     if (event is AddCounter) {
       try {
         _repository.addCounter(event.counter);
-
-        yield state;
       } catch (_) {
         yield ErrorState();
       }
@@ -39,8 +37,6 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
     if (event is DeleteCounter) {
       try {
         _repository.deleteCounter(event.counter);
-
-        yield state;
       } catch(_) {
         yield ErrorState();
       }
