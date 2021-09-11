@@ -6,18 +6,17 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChangeCounterScreen extends StatelessWidget {
-  late final ChangeCounterScreenBloc _bloc;
-
   @override
   Widget build(BuildContext context) {
-    _bloc = BlocProvider.of<ChangeCounterScreenBloc>(context);
+    ChangeCounterScreenBloc bloc =
+        BlocProvider.of<ChangeCounterScreenBloc>(context);
 
     return Scaffold(
       body: ChangeCounter(),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.check_rounded),
           onPressed: () {
-            _bloc.add(SaveCounter());
+            bloc.add(SaveCounter());
           }),
     );
   }

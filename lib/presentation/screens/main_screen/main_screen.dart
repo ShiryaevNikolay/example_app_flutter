@@ -13,7 +13,7 @@ class MainScreen extends StatelessWidget {
   late final MainScreenBloc _bloc;
   final Function(Counter) onCounterTap;
 
-  MainScreen({required this.onCounterTap});
+  MainScreen(this.onCounterTap);
 
   @override
   Widget build(BuildContext context) {

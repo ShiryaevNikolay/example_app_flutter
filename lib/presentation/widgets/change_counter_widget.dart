@@ -6,11 +6,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChangeCounter extends StatelessWidget {
-  late final ChangeCounterScreenBloc _bloc;
-
   @override
   Widget build(BuildContext context) {
-    _bloc = BlocProvider.of<ChangeCounterScreenBloc>(context);
+    ChangeCounterScreenBloc bloc = BlocProvider.of<ChangeCounterScreenBloc>(context);
 
     return BlocBuilder<ChangeCounterScreenBloc, ChangeCounterScreenState>(
       builder: (context, state) {
@@ -20,7 +18,7 @@ class ChangeCounter extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () {
-                  _bloc.add(DecrementCounter());
+                  bloc.add(DecrementCounter());
                 },
                 icon: Icon(Icons.remove_rounded),
               ),
@@ -30,7 +28,7 @@ class ChangeCounter extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  _bloc.add(IncrementCounter());
+                  bloc.add(IncrementCounter());
                 },
                 icon: Icon(Icons.add_rounded),
               ),

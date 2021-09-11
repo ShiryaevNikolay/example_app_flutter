@@ -1,11 +1,9 @@
 import 'package:flutter/widgets.dart';
 
 class EmptyWidget extends StatelessWidget {
-  late final String _message;
+  final String _message;
 
-  EmptyWidget(String message) {
-    this._message = message;
-  }
+  EmptyWidget(this._message);
 
   @override
   Widget build(BuildContext context) {

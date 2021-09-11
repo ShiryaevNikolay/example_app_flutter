@@ -6,18 +6,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CounterItem extends StatelessWidget {
-  late final Counter _counter;
-  late final MainScreenBloc _bloc;
-  late final Function(Counter) _onCounterTap;
+  final Counter _counter;
+  final Function(Counter) _onCounterTap;
 
-  CounterItem(Counter counter, Function(Counter) onCounterTap) {
-    this._counter = counter;
-    this._onCounterTap = onCounterTap;
-  }
+  CounterItem(this._counter, this._onCounterTap);
 
   @override
   Widget build(BuildContext context) {
-    _bloc = BlocProvider.of<MainScreenBloc>(context);
+    MainScreenBloc bloc = BlocProvider.of<MainScreenBloc>(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
@@ -38,7 +34,7 @@ class CounterItem extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.close),
                   onPressed: () {
-                    _bloc.add(DeleteCounter(_counter));
+                    bloc.add(DeleteCounter(_counter));
                   },
                 )
               ],

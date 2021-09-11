@@ -4,13 +4,10 @@ import 'package:example_app_flutter/presentation/widgets/counter_item_widget.dar
 import 'package:flutter/widgets.dart';
 
 class CountersList extends StatelessWidget {
-  late final ShowCountersState _state;
-  late final Function(Counter) _onCounterTap;
+  final ShowCountersState _state;
+  final Function(Counter) _onCounterTap;
 
-  CountersList(ShowCountersState state, Function(Counter) onCounterTap) {
-    this._state = state;
-    this._onCounterTap = onCounterTap;
-  }
+  CountersList(this._state, this._onCounterTap);
 
   @override
   Widget build(BuildContext context) {

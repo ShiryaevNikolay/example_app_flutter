@@ -14,6 +14,6 @@ class MainScreenPage extends Page {
   Route createRoute(BuildContext context) {
     return MaterialPageRoute(
         settings: this,
-        builder: (context) => MainScreen(onCounterTap: onCounterTap));
+        builder: (context) => MainScreen(onCounterTap));
   }
 }
