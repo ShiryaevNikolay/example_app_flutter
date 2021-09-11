@@ -1,5 +1,4 @@
 import 'package:example_app_flutter/data/repository/counter_repository.dart';
-import 'package:example_app_flutter/domain/counter.dart';
 import 'package:example_app_flutter/presentation/navigation/router/router_delegate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,15 +11,13 @@ class ChangeCounterScreenBloc
   final CounterRepository _repository;
 
   ChangeCounterScreenBloc(this._repository, this._routerDelegate)
-      : super(ChangeCounterScreenState(
-            _routerDelegate.selectedCounter ?? Counter(0)));
+      : super(ChangeCounterScreenState(_routerDelegate.selectedCounter));
 
   @override
   Stream<ChangeCounterScreenState> mapEventToState(
       ChangeCounterScreenEvent event) async* {
     if (event is InitialCounter) {
-      yield ChangeCounterScreenState(
-          _routerDelegate.selectedCounter ?? Counter(0));
+      yield ChangeCounterScreenState(_routerDelegate.selectedCounter);
     }
 
     if (event is IncrementCounter) {
