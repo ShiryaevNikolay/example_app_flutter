@@ -1,35 +1,22 @@
 import 'package:equatable/equatable.dart';
 import 'package:example_app_flutter/domain/counter.dart';
-import 'package:flutter/foundation.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
-abstract class MainScreenState extends Equatable {}
+abstract class MainScreenState {}
 
 class EmptyDataState extends MainScreenState {
   static const String message = "Добавьте счетчик";
-
-  @override
-  List<Object?> get props => [this];
 }
 
-class ShowCountersState extends MainScreenState {
-  late final ValueListenable<Box<Counter>> _boxListenable;
-  ValueListenable<Box<Counter>> get boxListenable => _boxListenable;
+class ShowCountersState extends MainScreenState with EquatableMixin {
+  final Iterable<Counter> _counters;
+  Iterable<Counter> get counters => _counters;
 
-  ShowCountersState(boxListenable) {
-    this._boxListenable = boxListenable;
-  }
+  ShowCountersState(this._counters);
 
   @override
-  List<Object?> get props => [_boxListenable];
+  List<Object?> get props => [this._counters.hashCode];
 }
 
-class LoadingState extends MainScreenState {
-  @override
-  List<Object?> get props => [this];
-}
+class LoadingState extends MainScreenState {}
 
-class ErrorState extends MainScreenState {
-  @override
-  List<Object?> get props => [this];
-}
+class ErrorState extends MainScreenState {}

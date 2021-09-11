@@ -6,9 +6,9 @@ import 'main_screen_event.dart';
 import 'main_screen_state.dart';
 
 class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
-  final CounterRepository _repository = CounterRepository();
+  final CounterRepository _repository;
 
-  MainScreenBloc() : super(EmptyDataState()) {
+  MainScreenBloc(this._repository) : super(EmptyDataState()) {
     add(LoadCounters());
   }
 
@@ -20,7 +20,7 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
 
         final countersBox = _repository.getCounterBox();
 
-        yield ShowCountersState(countersBox.listenable());
+        yield ShowCountersState(countersBox.values);
       } catch (_) {
         yield ErrorState();
       }
@@ -29,6 +29,10 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
     if (event is AddCounter) {
       try {
         _repository.addCounter(event.counter);
+
+        final countersBox = _repository.getCounterBox();
+
+        yield ShowCountersState(countersBox.values);
       } catch (_) {
         yield ErrorState();
       }
@@ -37,7 +41,11 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
     if (event is DeleteCounter) {
       try {
         _repository.deleteCounter(event.counter);
-      } catch(_) {
+
+        final countersBox = _repository.getCounterBox();
+
+        yield ShowCountersState(countersBox.values);
+      } catch (_) {
         yield ErrorState();
       }
     }

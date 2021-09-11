@@ -1,12 +1,9 @@
 import 'package:example_app_flutter/data/bloc/main_screen/main_screen_state.dart';
 import 'package:example_app_flutter/domain/counter.dart';
 import 'package:example_app_flutter/presentation/widgets/counter_item_widget.dart';
-import 'package:example_app_flutter/presentation/widgets/empty_widget.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 class CountersList extends StatelessWidget {
-
   late final ShowCountersState _state;
   late final Function(Counter) _onCounterTap;
 
@@ -17,21 +14,12 @@ class CountersList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: _state.boxListenable, 
-      builder: (BuildContext context, Box<Counter> box, _) {
-        if (box.values.isEmpty) {
-          return EmptyWidget(EmptyDataState.message);
-        }
-        return ListView.builder(
-          itemCount: box.values.length,
-          itemBuilder: (context, index) {
-            Counter? counter = box.getAt(index);
+    return ListView.builder(
+        itemCount: _state.counters.length,
+        itemBuilder: (context, index) {
+          Counter counter = _state.counters.elementAt(index);
 
-            return counter != null ? CounterItem(counter, _onCounterTap) : Text("Ничего");
-          }
-        );
-      }
-    );
+          return CounterItem(counter, _onCounterTap);
+        });
   }
 }

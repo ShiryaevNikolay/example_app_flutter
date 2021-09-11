@@ -10,7 +10,7 @@ class ChangeCounterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _bloc = BlocProvider.of<ChangeCounterScreenBloc>(context)..add(InitialCounter());
+    _bloc = BlocProvider.of<ChangeCounterScreenBloc>(context);
 
     return Scaffold(
       body: ChangeCounter(),

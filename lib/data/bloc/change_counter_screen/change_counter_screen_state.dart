@@ -1,25 +1,19 @@
+import 'package:equatable/equatable.dart';
 import 'package:example_app_flutter/domain/counter.dart';
 
-class ChangeCounterScreenState {
-  late final Counter? _counter;
+class ChangeCounterScreenState extends Equatable {
+  final Counter? _counter;
   Counter? get counter => _counter;
-  int _currentCount = 0;
+  late final int _currentCount;
   int get currentCount => _currentCount;
 
-  ChangeCounterScreenState({required Counter? counter}) {
-    this._counter = counter;
+  ChangeCounterScreenState(this._counter) {
     this._currentCount = this._counter?.count ?? 0;
   }
 
-  ChangeCounterScreenState copyWith({int? count}) =>
-      ChangeCounterScreenState(counter: this._counter)
-        .._currentCount = count ?? this._currentCount;
+  ChangeCounterScreenState.copyWithCount(this._counter, this._currentCount);
 
   @override
-  int get hashCode => _currentCount.hashCode;
-
-  @override
-  bool operator ==(Object other) {
-    return _currentCount == other;
-  }
+  List<Object?> get props =>
+      [this._counter.hashCode, this._currentCount.hashCode];
 }

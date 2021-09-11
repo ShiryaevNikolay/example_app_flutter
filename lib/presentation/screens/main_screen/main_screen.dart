@@ -10,7 +10,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainScreen extends StatelessWidget {
-
   late final MainScreenBloc _bloc;
   final Function(Counter) onCounterTap;
 
@@ -18,11 +17,11 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     _bloc = BlocProvider.of<MainScreenBloc>(context);
 
     return Scaffold(
-      body: BlocBuilder<MainScreenBloc, MainScreenState>(builder: (context, state) {
+      body: BlocBuilder<MainScreenBloc, MainScreenState>(
+          builder: (context, state) {
         if (state is LoadingState) {
           return LoadingWidget();
         }
@@ -33,10 +32,8 @@ class MainScreen extends StatelessWidget {
 
         return InitialWidget();
       }),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: addCounter
-      ),
+      floatingActionButton:
+          FloatingActionButton(child: Icon(Icons.add), onPressed: addCounter),
     );
   }
 
