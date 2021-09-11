@@ -17,7 +17,6 @@ class CounterItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     _bloc = BlocProvider.of<MainScreenBloc>(context);
 
     return Padding(

@@ -4,14 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class ChangeCounterScreenPage extends Page {
-
   ChangeCounterScreenPage() : super(key: ValueKey(Pages.CHANGE_COUNTER_PAGE));
 
   @override
   Route createRoute(BuildContext context) {
     return MaterialPageRoute(
-      settings: this,
-      builder: (context) => ChangeCounterScreen()
-    );
+        settings: this, builder: (context) => ChangeCounterScreen());
   }
 }

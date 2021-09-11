@@ -3,12 +3,12 @@ import 'package:example_app_flutter/domain/counter.dart';
 import 'package:hive/hive.dart';
 
 class CounterRepository {
-
-  static final CounterRepository _counterRepository = CounterRepository._internal();
+  static final CounterRepository _counterRepository =
+      CounterRepository._internal();
   CounterRepository._internal();
 
   factory CounterRepository() => _counterRepository;
-  
+
   CounterStorage _counterStorage = CounterStorage();
 
   Box<Counter> getCounterBox() => _counterStorage.box;
