@@ -27,7 +27,7 @@ class MainScreen extends StatelessWidget {
         }
 
         if (state is ShowCountersState) {
-          return CountersList(state, onCounterTap);
+          return CountersList(state.counters, onCounterTap);
         }
 
         return InitialWidget();
